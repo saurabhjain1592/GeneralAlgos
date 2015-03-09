@@ -26,11 +26,12 @@ public class KnapsackDPHueristic {
 					} else {
 						wt[i][j] = Integer.MAX_VALUE / 4;
 					}
-				}else{
-					if(j<v[i-1])
+				} else {
+					if (j < v[i - 1])
 						wt[i][j] = wt[i - 1][j];
 					else
-						wt[i][j] = Math.min(wt[i - 1][j], w[i-1] + wt[i - 1][j - v[i-1]]);
+						wt[i][j] = Math.min(wt[i - 1][j], w[i - 1]
+								+ wt[i - 1][j - v[i - 1]]);
 				}
 			}
 		}
@@ -42,12 +43,12 @@ public class KnapsackDPHueristic {
 		}
 		return maxV;
 	}
-	
-	public static void main(String[] args){
-		int val[] = {60, 100, 120};
-	    double wt[] = {10, 20, 30};
-	    double  W = 50;
-	    KnapsackDPHueristic kdh = new KnapsackDPHueristic(val,wt,W);
-	    System.out.println(kdh.getMaxKnapsackValue());
+
+	public static void main(String[] args) {
+		int val[] = { 60, 100, 120 };
+		double wt[] = { 10, 20, 30 };
+		double W = 50;
+		KnapsackDPHueristic kdh = new KnapsackDPHueristic(val, wt, W);
+		System.out.println(kdh.getMaxKnapsackValue());
 	}
 }

@@ -23,11 +23,11 @@ public class KnapsackHueristicDPApproximate {
 		int v1[] = new int[v.length];
 		int sum = 0;
 		for (int i = 0; i < v.length; i++) {
-			v1[i] = (int)(v[i] / m);
+			v1[i] = (int) (v[i] / m);
 			sum += v1[i];
 		}
 
-		double wt[][] = new double[v1.length + 1][sum+1];
+		double wt[][] = new double[v1.length + 1][sum + 1];
 		for (int i = 0; i <= v1.length; i++) {
 			for (int j = 0; j <= sum; j++) {
 				if (i == 0) {
@@ -47,25 +47,26 @@ public class KnapsackHueristicDPApproximate {
 			}
 		}
 		int maxV = Integer.MIN_VALUE;
-		int q=-1;
+		int q = -1;
 		for (int j = 0; j <= sum; j++) {
 			if (wt[v1.length][j] <= capacity) {
-				int t=maxV;
+				int t = maxV;
 				maxV = Math.max(maxV, j);
-				if(t!=maxV)
-					q=j;
+				if (t != maxV)
+					q = j;
 			}
 		}
-		
-		int p=v.length;
+
+		int p = v.length;
 		double optimalV = 0;
-		while(p!=0 && q!=0){
-			if(q>=v1[p-1] && wt[p][q]==wt[p-1][q-v1[p-1]]+w[p-1]){
-				optimalV+=v[p-1];
-				q = q-v1[p-1];
-				p = p-1;
-			}else{
-				p=p-1;
+		while (p != 0 && q != 0) {
+			if (q >= v1[p - 1]
+					&& wt[p][q] == wt[p - 1][q - v1[p - 1]] + w[p - 1]) {
+				optimalV += v[p - 1];
+				q = q - v1[p - 1];
+				p = p - 1;
+			} else {
+				p = p - 1;
 			}
 		}
 		return optimalV;
@@ -80,5 +81,3 @@ public class KnapsackHueristicDPApproximate {
 		System.out.println(khda.getApproximateOptimalValue(0.01));
 	}
 }
-
-
